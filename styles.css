@@ -8,14 +8,17 @@ h1 {
   font-weight: bold;
   font-style: italic;
   text-decoration: underline;
-
+  text-shadow: 5px 4px 6px rgba(0,0,0,0.55);
 }
 .row > div {
   float: left;
   height: 100px;
   width: 100px;
-  font-family: 'Shadows Into Light', cursive;
-
+  font-family: 'Lato', sans-serif;
+  font-size: 70px;
+  text-align: center;
+  line-height: 100px;
+  text-shadow: 0px 3px 7px rgba(0,0,0,0.7);
 }
 .row {
   margin:  0 auto;
