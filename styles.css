@@ -25,16 +25,16 @@ h1 {
   width: 302px;
   clear: both;
 }
-.top {
+#top {
   border-bottom: 1px solid black;
 }
-.bottom {
+#bottom {
   border-top: 1px solid  black;
 }
-.left {
+#left {
   border-right: 1px solid black;
 }
-.right {
+#right {
   border-left: 1px solid black;
 }
 .pointer {
