@@ -77,7 +77,7 @@ function checkForThreeHorizontal(board, playerNumber) {
 
 
 function checkForThreeVertical() {
-  let currentPlayer = squareClicked(e)
+  let currentPlayer = 'X'
   for (let i = 0; i < winningCombos.length; i++) {
     let sum = 0;
     let combo = winningCombos[i];
