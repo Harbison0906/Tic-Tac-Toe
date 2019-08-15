@@ -17,7 +17,7 @@ const winningCombos = [
 ];
 
 let squares = document.querySelectorAll('.row > div');
-let playerNumber = "1";
+let playerNumber = "X";
 
 squares.forEach(function (square) {
   square.addEventListener('click', squareClicked);
@@ -29,16 +29,16 @@ function squareClicked(e) {
     position: e.target.className
   }
 
-  if (playerNumber === "1") {
+  if (playerNumber === "X") {
     e.target.textContent = 'X';
     updateBoard(turnInfo);
     checkForWin(board, playerNumber);
-    playerNumber = "2";
+    playerNumber = "O";
   } else {
     e.target.textContent = 'O';
     updateBoard(turnInfo);
     checkForWin(board, playerNumber);
-    playerNumber = "1";
+    playerNumber = "X";
   }
 };
 
@@ -57,6 +57,7 @@ function checkForWin(board, playerNumber) {
   checkForThreeVertical(board, playerNumber);
   //checkForThreeDiagonal(board, playerNumber);
 };
+
 
 function checkForThreeHorizontal(board, playerNumber) {
   let matcher = 0;
@@ -82,15 +83,16 @@ function checkForThreeVertical() {
     let sum = 0;
     let combo = winningCombos[i];
     for (let j = 0; j < combo.length; j++) {
-      console.log(squares[combo[j]]);
       if (squares[combo[j]].textContent === currentPlayer) {
         sum++;
-      } 
+        currentPlayer = 'O'
+      }
       if (sum === 3) {
-      displayWinner(playerNumber);
+        displayWinner(currentPlayer);
+      }
     }
- }
-}
+
+  }
 }
 
 
@@ -98,8 +100,8 @@ function checkForThreeVertical() {
 //console.log("Cannot yet check for a three diagonal win");//
 
 
-function displayWinner(playerNumber) {
-  alert(`Player ${playerNumber} wins!`)
+function displayWinner(currentPlayer) {
+  alert(`Player ${currentPlayer} wins!`)
 }
 
 
