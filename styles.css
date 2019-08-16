@@ -1,5 +1,6 @@
 body {
   font-family: 'Lato', sans-serif;
+  background-color:red;
 }
 
 #board {
@@ -8,20 +9,27 @@ body {
 h1 {
   text-align: center;
   font-size: 50px;
-  
+  color: navy;
   font-weight: bold;
   font-style: italic;
   text-decoration: underline;
-  text-shadow: 0px 1px 5px rgba(0,0,0,0.6);
+  text-shadow: 2px 1px 0px #FFFFFF;
+}
+h2 {
+  text-align: center;
+  font-style: italic;
+  color: navy;
+  text-shadow: 2px 1px 0px #FFFFFF;
 }
 .row > div {
+  color: navy;
+  text-shadow: 2px 1px 0px #FFFFFF;
   float: left;
   height: 100px;
   width: 100px;
   font-size: 70px;
   text-align: center;
   line-height: 100px;
-  text-shadow: 0px 1px 5px rgba(0,0,0,0.6);
 }
 .row {
   margin:  0 auto;
@@ -29,16 +37,16 @@ h1 {
   clear: both;
 }
 .t {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #FFFFFF;
 }
 .b {
-  border-top: 1px solid  black;
+  border-top: 1px solid  #FFFFFF;
 }
 .l {
-  border-right: 1px solid black;
+  border-right: 1px solid #FFFFFF;
 }
 .r {
-  border-left: 1px solid black;
+  border-left: 1px solid #FFFFFF;
 }
 .pointer {
   cursor: pointer;

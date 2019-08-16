@@ -16,7 +16,12 @@ const winningCombos = [
   [2, 4, 6]
 ];
 
+let moveCount = 0
+
+let gameOver = false;
+
 let squares = document.querySelectorAll('.row > div');
+let banner = document.querySelector('#result');
 let playerNumber = "X";
 
 squares.forEach(function (square) {
@@ -24,6 +29,13 @@ squares.forEach(function (square) {
 });
 
 function squareClicked(e) {
+  if (gameOver) {
+    gameReset()
+    return;
+  }
+  if (e.target.textContent === 'X' || e.target.textContent === 'O') {
+    return;
+  }
   let turnInfo = {
     player: playerNumber,
     position: e.target.className
@@ -31,15 +43,23 @@ function squareClicked(e) {
 
   if (playerNumber === "X") {
     e.target.textContent = 'X';
-    updateBoard(turnInfo);
-    checkForWin(board, playerNumber);
+    checkWin();
+
+    // checkForWin(board, playerNumber);
     playerNumber = "O";
   } else {
     e.target.textContent = 'O';
-    updateBoard(turnInfo);
-    checkForWin(board, playerNumber);
+    checkWin();
+
+    // checkForWin(board, playerNumber);
     playerNumber = "X";
   }
+  moveCount++
+  // updateBoard(turnInfo);
+    if (moveCount === 9) {
+      banner.textContent = 'DRAW';
+      gameOver = true;
+    }
 };
 
 function updateBoard(turnInfo) {
@@ -53,45 +73,44 @@ function updateBoard(turnInfo) {
 };
 
 function checkForWin(board, playerNumber) {
-  checkForThreeHorizontal(board, playerNumber);
-  checkForThreeVertical(board, playerNumber);
+  // checkForThreeHorizontal(board, playerNumber);
+  // checkForThreeVertical(board, playerNumber);
   //checkForThreeDiagonal(board, playerNumber);
 };
 
 
-function checkForThreeHorizontal(board, playerNumber) {
-  let matcher = 0;
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i].length; j++) {
-      if (board[i][j].player) {
-        if (board[i][j].player === playerNumber) {
-          matcher += 1;
-        }
-      }
-      if (matcher === 3) {
-        displayWinner(playerNumber);
-      }
-    }
-    matcher = 0;
-  }
-};
+// function checkForThreeHorizontal(board, playerNumber) {
+//   let matcher = 0;
+//   for (let i = 0; i < board.length; i++) {
+//     for (let j = 0; j < board[i].length; j++) {
+//       if (board[i][j].player) {
+//         if (board[i][j].player === playerNumber) {
+//           matcher += 1;
+//         }
+//       }
+//       if (matcher === 3) {
+//         displayWinner(playerNumber);
+//       }
+//     }
+//     matcher = 0;
+//   }
+// };
 
 
-function checkForThreeVertical() {
-  let currentPlayer = 'X'
+function checkWin() {
   for (let i = 0; i < winningCombos.length; i++) {
     let sum = 0;
     let combo = winningCombos[i];
     for (let j = 0; j < combo.length; j++) {
-      if (squares[combo[j]].textContent === currentPlayer) {
+      if (squares[combo[j]].textContent === playerNumber) {
         sum++;
-        currentPlayer = 'O'
       }
-      if (sum === 3) {
-        displayWinner(currentPlayer);
-      }
-    }
 
+    }
+    if (sum === 3) {
+      displayWinner(playerNumber);
+      gameOver = true;
+    }
   }
 }
 
@@ -101,7 +120,17 @@ function checkForThreeVertical() {
 
 
 function displayWinner(currentPlayer) {
-  alert(`Player ${currentPlayer} wins!`)
+  banner.textContent = `Player ${currentPlayer} wins!`
 }
+
+function gameReset () {
+  moveCount = 0;
+  gameOver = false;
+  playerNumber = 'X';
+  banner.textContent = '';
+  for (let square of squares) {
+    square.textContent = '';
+  }
+} 
 
 
